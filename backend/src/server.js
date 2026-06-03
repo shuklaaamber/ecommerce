@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const connectDB =
   require("./config/db");
@@ -36,6 +37,33 @@ app.get("/", (req, res) => {
 
 const PORT =
   process.env.PORT || 5000;
+
+const categoryRoutes =
+  require(
+    "./routes/category.routes"
+  );
+
+const errorHandler =
+  require(
+    "./middleware/error.middleware"
+  );
+
+  app.use(
+  "/uploads",
+  express.static(
+    path.join(
+      __dirname,
+      "../uploads"
+    )
+  )
+);
+
+app.use(
+  "/api/categories",
+  categoryRoutes
+);
+
+app.use(errorHandler);
 
 app.listen(PORT, () =>
   console.log(
