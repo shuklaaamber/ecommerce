@@ -30,6 +30,8 @@ app.use("/api/cart", cartRoutes);
 
 app.use("/api/orders", orderRoutes);
 
+const paymentRoutes = require("./routes/payment.routes");
+
 app.get("/", (req, res) => {
   res.send("API Running");
 });
@@ -43,6 +45,8 @@ const errorHandler = require("./middleware/error.middleware");
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use("/api/categories", categoryRoutes);
+
+app.use("/api/payments", paymentRoutes);
 
 app.use(errorHandler);
 

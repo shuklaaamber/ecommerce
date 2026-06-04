@@ -15,7 +15,7 @@ const adminOnly =
   );
 
 const {
-  createOrder,
+  createCODOrder,
   getMyOrders,
   getOrderById,
   getAllOrders,
@@ -25,9 +25,9 @@ const {
 );
 
 router.post(
-  "/",
+  "/cod",
   protect,
-  createOrder
+  createCODOrder
 );
 
 router.get(
